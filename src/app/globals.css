@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-brand-cyan: #00f0ff;
+  --color-brand-teal: #0df2c9;
+  --color-brand-purple: #8b5cf6;
+  --color-brand-orange: #ff9f00;
+  --color-brand-blue: #3b82f6;
+  
+  --color-bg-deep: #05070f;
+  --color-bg-card: rgba(13, 18, 35, 0.45);
+  --color-border-subtle: rgba(255, 255, 255, 0.04);
+  --color-border-glow: rgba(0, 240, 255, 0.35);
+  
+  --font-sans: var(--font-outfit), var(--font-geist-sans), sans-serif;
+}
+
+:root {
+  --background: #05070f;
+  --foreground: #f8fafc;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  /* Premium dot-grid background */
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.04) 0%, transparent 80%),
+    radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 24px 24px;
+}
+
+/* Custom Scrollbar for a premium look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(5, 7, 15, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.3);
+}
+
+/* Abstract Grid and Gradient utilities */
+.glow-mesh {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.25;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(0, 240, 255, 0.12) 0px, transparent 55%),
+    radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.12) 0px, transparent 55%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.card-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Glassmorphic panel layout */
+.glass-panel {
+  background: rgba(11, 15, 30, 0.5);
+  backdrop-filter: blur(16px) saturate(120%);
+  -webkit-backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Glowing border effect */
+.glow-border {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+
+.glow-border:hover::before {
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(139, 92, 246, 0.3));
+}
+
+/* Stroked Text style */
+.text-stroke-neon {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+  color: transparent;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.02);
+}
+.glow-border:hover .text-stroke-neon {
+  -webkit-text-stroke: 1px rgba(0, 240, 255, 0.35);
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+/* Shimmer Progress bar effect */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.progress-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 2.5s infinite;
+}
